@@ -1,2 +1,16 @@
+@use "./scss/mixins.scss" as *;
+@use "./scss/variables.scss" as *;
+
 @import "./reset.scss";
-@import "./scss/mixins.scss";
+@import url(https://fonts.googleapis.com/css?family=Inter:300,regular,500,700&display=swap);
+
+body {
+  font-family: $fontFamily;
+  font-size: rem($fontSize);
+  line-height: 1.2;
+  color: $mainColorDark;
+}
+
+#root {
+  height: 100%;
+}

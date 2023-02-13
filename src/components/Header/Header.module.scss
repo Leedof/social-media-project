@@ -1,0 +1,36 @@
+@use "../../scss/mixins" as *;
+@use "../../scss/variables" as *;
+
+.header {
+  grid-column: span 2;
+}
+
+.сontainer {
+  background-color: $mainColorDark;
+  padding: rem(10) rem(22);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: em(768)) {
+    padding: rem(10) rem(10);
+  }
+}
+
+.actions {
+  display: flex;
+  gap: rem(28);
+  align-items: center;
+
+  @media (max-width: em(768)) {
+    gap: rem(14);
+  }
+
+  &__profile {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+}

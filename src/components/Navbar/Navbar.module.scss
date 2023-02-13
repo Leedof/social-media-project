@@ -1,0 +1,43 @@
+@use "../../scss/mixins" as *;
+@use "../../scss/variables" as *;
+
+.navbar {
+  background-color: $secondaryColorDark;
+  color: white;
+}
+
+.menu {
+  padding: rem(48) rem(20);
+
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: rem(13);
+    }
+    &:nth-child(3) {
+      margin-bottom: rem(106);
+    }
+  }
+
+  &__item a {
+    display: flex;
+    align-items: center;
+    gap: rem(5);
+    font-weight: 700;
+    font-size: rem(30);
+    fill: white;
+
+    &:hover {
+      color: $activeColor;
+      fill: $activeColor;
+    }
+  }
+
+  &__item a.active {
+    color: $activeColor;
+    fill: $activeColor;
+  }
+
+  &__icon {
+    fill: inherit;
+  }
+}

@@ -1,0 +1,13 @@
+@use "../scss/mixins" as *;
+@use "../scss/variables" as *;
+
+.appWrapper {
+  display: grid;
+  grid-template-columns: rem(215) auto;
+  grid-template-rows: rem(60) auto;
+  gap: rem(22);
+  max-width: rem($containerWidth);
+  margin: 0 auto;
+  padding: 0 rem(15);
+  min-height: rem(800);
+}
