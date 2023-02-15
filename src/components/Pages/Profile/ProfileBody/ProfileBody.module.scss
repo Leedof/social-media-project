@@ -1,0 +1,32 @@
+.title {
+  font-weight: 700;
+  font-size: 30px;
+  margin-bottom: 19px;
+}
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 54px;
+  row-gap: 36px;
+  justify-content: center;
+
+  span {
+    width: 100%;
+    text-align: start;
+  }
+}
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 180px;
+  // max-width: 180px;
+  background-color: rgba(38, 70, 83, 1);
+  padding: 17px 40px;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+}

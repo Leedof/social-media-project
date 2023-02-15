@@ -1,49 +1,19 @@
 import styles from "./Profile.module.scss";
-import defaultAvatar from "../../../assets/images/profile.jpg";
-//icons
-import editIcon from "../../../assets/Icons/profile/edit.svg";
-import { Link } from "react-router-dom";
+import ProfileBody from "./ProfileBody/ProfileBody";
+import ProfileHeader from "./ProfileHeader/ProfileHeader";
 
-const Profile = ({ profile, status }) => {
+const Profile = ({ profile, status, isOwner }) => {
   return (
-    <div className={styles.profile}>
-      <div className={styles.header}>
-        <div className={styles.avatar}>
-          <img
-            src={profile.photos.large ? profile.photos.large : defaultAvatar}
-            alt="Avatar"
-            width={300}
-            height={300}
-          />
-        </div>
-        <div className={styles.info}>
-          <div className={styles.infoHeader}>
-            <div className={styles.title}>{profile.fullName}</div>
-            <div className={styles.status}>{profile.status}</div>
-          </div>
-          <div className={styles.infoBody}>
-            <div className={styles.jobStatus}>
-              <span>Looking for a job:</span>{" "}
-              {profile.lookingForAJob ? "Yes" : "No"}
-            </div>
-            {profile.lookingForAJob ? (
-              <div className={styles.skills}>
-                <span>My professional skills:</span>
-                <div className={styles.skillsBody}>
-                  {profile.lookingForAJobDescription}
-                </div>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
-        <div className={styles.actions}>
-          <Link to="/settings">
-            <img src={editIcon} alt="edit" />
-          </Link>
-        </div>
-      </div>
+    <div className={styles.profilePage}>
+      <ProfileHeader
+        fullName={profile.fullName}
+        photos={profile.photos}
+        status={status}
+        lookingForAJob={profile.lookingForAJob}
+        lookingForAJobDescription={profile.lookingForAJobDescription}
+        isOwner={isOwner}
+      />
+      <ProfileBody contacts={profile.contacts} />
     </div>
   );
 };

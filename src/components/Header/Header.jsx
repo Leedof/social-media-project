@@ -2,12 +2,9 @@ import React from "react";
 import styles from "./Header.module.scss";
 
 import Logo from "../../assets/images/logo.svg";
-import profileImage from "../../assets/images/profile.jpg";
-import logoutImg from "../../assets/Icons/auth/logout.svg";
-import loginImg from "../../assets/Icons/auth/login.svg";
 import { Link } from "react-router-dom";
 
-const Header = ({ isAuth, signOutHandler }) => {
+const Header = ({ isAuth, photos, signOutHandler }) => {
   return (
     <header className={styles.header}>
       <div className={styles.сontainer}>
@@ -16,17 +13,12 @@ const Header = ({ isAuth, signOutHandler }) => {
         </div>
         <div className={styles.actions}>
           {isAuth ? (
-            <>
-              <div className={styles.actions__profile}>
-                <img src={profileImage} alt="profile" width={45} height={45} />
-              </div>
-              <div onClick={signOutHandler} className={styles.actions__auth}>
-                <img src={logoutImg} alt="logout" />
-              </div>
-            </>
+            <div onClick={signOutHandler} className={styles.actions__auth}>
+              <span>Sign out</span>
+            </div>
           ) : (
             <Link to="/login" className={styles.actions__auth}>
-              <img src={loginImg} alt="login" />
+              <span> Sign in</span>
             </Link>
           )}
         </div>

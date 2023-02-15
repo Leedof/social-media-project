@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import Profile from "./Profile";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getProfile } from "./../../../store/slices/profileSlice";
+import { getProfile, getStatus } from "./../../../store/slices/profileSlice";
 import Loader from "../../UI/Loader/Loader";
 
 const ProfileContainer = () => {
@@ -21,13 +21,20 @@ const ProfileContainer = () => {
 
   useEffect(() => {
     dispatch(getProfile(userId));
+    dispatch(getStatus(userId));
   }, [dispatch, userId]);
 
   if (profile.isFetching) {
     return <Loader />;
   }
 
-  return <Profile profile={profile.data} status={profile.status} />;
+  return (
+    <Profile
+      profile={profile.data}
+      status={profile.status}
+      isOwner={userId === authId}
+    />
+  );
 };
 
 export default ProfileContainer;

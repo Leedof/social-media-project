@@ -9,7 +9,7 @@ const Layout = () => {
     <div className={styles.appWrapper}>
       <HeaderContainer />
       <Navbar />
-      <main>
+      <main className={styles.mainSection}>
         <Outlet />
       </main>
     </div>

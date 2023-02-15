@@ -31,4 +31,16 @@ export const profileAPI = {
       .get("/profile/status/" + userId)
       .then((response) => response.data);
   },
+  setStatus(status) {
+    return instance
+      .put("/profile/status", { status })
+      .then((response) => response.data);
+  },
+  setPhoto(photoFile) {
+    const formData = new FormData();
+    formData.append("photos", photoFile);
+    return instance
+      .put("/profile/photo", formData)
+      .then((response) => response.data);
+  },
 };
