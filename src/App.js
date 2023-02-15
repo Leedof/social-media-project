@@ -6,28 +6,48 @@ import {
 } from "react-router-dom";
 import "./App.scss";
 import Layout from "./components/Layout";
-// Default structure
-
 //Main = Pages
-import Login from "./components/Pages/Login/Login";
-import Profile from "./components/Pages/Profile/Profile";
-import Settings from "./components/Pages/Settings/Settings";
-import Users from "./components/Pages/Users/Users";
+import Home from "./components/Pages/Home/Home";
+import LoginContainer from "./components/Pages/Login/LoginContainer";
+import ProfileContainer from "./components/Pages/Profile/ProfileContainer";
+import SettingsContainer from "./components/Pages/Settings/SettingsContainer";
+import UsersContainer from "./components/Pages/Users/UsersContainer";
 import Weather from "./components/Pages/Weather/Weather";
+import Loader from "./components/UI/Loader/Loader";
+
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getInitApp } from "./store/slices/appSlice";
 //
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route index element={<Profile />} />
-      <Route path="users" element={<Users />} />
+      <Route index element={<Home />} />
+      <Route path="profile" element={<ProfileContainer />}>
+        <Route path=":id" element={<ProfileContainer />} />
+      </Route>
+      <Route path="users" element={<UsersContainer />} />
       <Route path="weather" element={<Weather />} />
-      <Route path="settings" element={<Settings />} />
-      <Route path="login" element={<Login />} />
+      <Route path="settings" element={<SettingsContainer />} />
+      <Route path="login" element={<LoginContainer />} />
       <Route path="*" element={<h1>Page not found 404</h1>} />
     </Route>
   )
 );
+
 function App() {
+  const isInitialized = useSelector((state) => state.appInit.isInitialized);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getInitApp());
+  }, [dispatch]);
+
+  if (!isInitialized) {
+    return <Loader />;
+  }
+
   return <RouterProvider router={router} />;
 }
 

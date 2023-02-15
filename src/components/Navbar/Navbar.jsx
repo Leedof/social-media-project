@@ -14,7 +14,7 @@ const Navbar = () => {
         <nav className={styles.menu}>
           <ul className={styles.menu__list}>
             <li className={styles.menu__item}>
-              <NavLink to="/" className={isActive}>
+              <NavLink to="/profile" className={isActive}>
                 <IconProfile className={styles.menu__icon} />
                 Profile
               </NavLink>
