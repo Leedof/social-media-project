@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import Profile from "./Profile";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -10,6 +10,7 @@ const ProfileContainer = () => {
   const profile = useSelector((state) => state.profile);
   const authId = useSelector((state) => state.auth.user.id);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   //Chek whose profile must be shown URL ? Auth ? none
   let userId;
   if (params.id) {
@@ -20,9 +21,12 @@ const ProfileContainer = () => {
   }
 
   useEffect(() => {
+    if (!userId) {
+      navigate("/login");
+    }
     dispatch(getProfile(userId));
     dispatch(getStatus(userId));
-  }, [dispatch, userId]);
+  }, [dispatch, userId, navigate]);
 
   if (profile.isFetching) {
     return <Loader />;

@@ -1,0 +1,51 @@
+.paginator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 38px;
+  background: rgba(175, 175, 175, 0.15);
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 60px;
+}
+
+.pages {
+  flex: 1 1 auto;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+.page {
+  padding: 6px;
+  border-radius: 10%;
+  cursor: pointer;
+  &:hover {
+    background-color: #a6ac41;
+  }
+}
+.pageDots {
+  padding: 6px;
+  border-radius: 10%;
+}
+.pageActive {
+  background-color: #a6ac41;
+}
+
+.btn {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  padding: 6px;
+  border-radius: 15%;
+  &:hover {
+    color: #949939;
+    fill: #949939;
+  }
+}
+
+.arrow.left {
+  transform: scaleX(-1);
+}

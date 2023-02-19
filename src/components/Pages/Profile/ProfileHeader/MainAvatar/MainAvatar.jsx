@@ -20,6 +20,7 @@ const MainAvatar = ({ photos, isOwner }) => {
             id="avatar"
             style={{ display: "none" }}
             onChange={onChangePhoto}
+            accept="image/*"
           />
         </label>
       ) : (

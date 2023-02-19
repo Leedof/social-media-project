@@ -1,0 +1,68 @@
+.card {
+  display: flex;
+  gap: 10px;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .btn {
+    width: 100px;
+    background-color: #264653;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 18px;
+    color: #ffffff;
+    letter-spacing: 1px;
+    padding: 5px 0;
+
+    &:hover {
+      box-shadow: 0 0 20px 2px #264653;
+    }
+    &:disabled {
+      background-color: grey;
+    }
+
+    &.followed {
+      color: rgba(38, 70, 83, 1);
+      background-color: rgba(166, 172, 65, 1);
+      &:hover {
+        box-shadow: 0 0 20px 2px rgba(166, 172, 65, 1);
+      }
+      &:disabled {
+        background-color: grey;
+      }
+    }
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+
+  background-color: rgba(38, 70, 83, 1);
+  border-radius: 50px;
+  color: #ffffff;
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 35px;
+
+  .title {
+    word-break: break-word;
+    font-weight: 700;
+    font-size: 30px;
+  }
+  .status {
+    font-weight: 400;
+    font-size: 18px;
+  }
+}

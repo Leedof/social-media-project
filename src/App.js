@@ -10,14 +10,15 @@ import Layout from "./components/Layout";
 import Home from "./components/Pages/Home/Home";
 import LoginContainer from "./components/Pages/Login/LoginContainer";
 import ProfileContainer from "./components/Pages/Profile/ProfileContainer";
+import Users from "./components/Pages/Users/Users";
 import SettingsContainer from "./components/Pages/Settings/SettingsContainer";
-import UsersContainer from "./components/Pages/Users/UsersContainer";
 import Weather from "./components/Pages/Weather/Weather";
 import Loader from "./components/UI/Loader/Loader";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getInitApp } from "./store/slices/appSlice";
+
 //
 
 const router = createBrowserRouter(
@@ -27,7 +28,8 @@ const router = createBrowserRouter(
       <Route path="profile" element={<ProfileContainer />}>
         <Route path=":id" element={<ProfileContainer />} />
       </Route>
-      <Route path="users" element={<UsersContainer />} />
+
+      <Route path="users" element={<Users />} />
       <Route path="weather" element={<Weather />} />
       <Route path="settings" element={<SettingsContainer />} />
       <Route path="login" element={<LoginContainer />} />

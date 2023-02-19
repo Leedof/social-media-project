@@ -13,9 +13,13 @@ const Header = ({ isAuth, photos, signOutHandler }) => {
         </div>
         <div className={styles.actions}>
           {isAuth ? (
-            <div onClick={signOutHandler} className={styles.actions__auth}>
+            <Link
+              to="/login"
+              className={styles.actions__auth}
+              onClick={signOutHandler}
+            >
               <span>Sign out</span>
-            </div>
+            </Link>
           ) : (
             <Link to="/login" className={styles.actions__auth}>
               <span> Sign in</span>
