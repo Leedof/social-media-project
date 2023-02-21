@@ -1,7 +1,6 @@
 import styles from "./ProfileHeader.module.scss";
 import editIcon from "../../../../assets/Icons/profile/edit.svg";
 import { Link } from "react-router-dom";
-import Avatar from "../../../UI/Avatar/Avatar";
 import Status from "./Status/Status";
 import MainAvatar from "./MainAvatar/MainAvatar";
 
@@ -39,11 +38,15 @@ const ProfileHeader = ({
           )}
         </div>
       </div>
-      <div className={styles.actions}>
-        <Link to="/settings">
-          <img src={editIcon} alt="edit" />
-        </Link>
-      </div>
+      {isOwner ? (
+        <div className={styles.actions}>
+          <Link to="/settings">
+            <img src={editIcon} alt="edit" />
+          </Link>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

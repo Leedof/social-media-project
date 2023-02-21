@@ -9,6 +9,8 @@ const initialState = {
     login: null,
     email: null,
   },
+  profile: null,
+  status: "",
 };
 
 export const signIn = createAsyncThunk(
@@ -33,7 +35,12 @@ export const signOut = createAsyncThunk(
 
     if (data.resultCode === 0) {
       dispatch(
-        setAuth({ isAuth: false, user: { id: null, login: null, email: null } })
+        setAuth({
+          isAuth: false,
+          user: { id: null, login: null, email: null },
+          profile: null,
+          status: "",
+        })
       );
     }
   }
@@ -45,7 +52,9 @@ export const authSlice = createSlice({
   reducers: {
     setAuth: (state, action) => {
       state.isAuth = action.payload.isAuth;
-      state.user = { ...action.payload.user };
+      state.user = action.payload.user;
+      state.profile = action.payload.profile;
+      state.status = action.payload.status;
     },
   },
 });

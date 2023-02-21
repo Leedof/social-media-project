@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { authAPI } from "./../../api/api";
+import { authAPI, profileAPI } from "./../../api/api";
 import { setAuth } from "./authSlice";
 
 const initialState = {
@@ -12,7 +12,9 @@ export const getInitApp = createAsyncThunk(
     const data = await authAPI.getAuth();
 
     if (data.resultCode === 0) {
-      dispatch(setAuth({ isAuth: true, user: data.data }));
+      const profile = await profileAPI.getProfile(data.data.id);
+      const status = await profileAPI.getStatus(data.data.id);
+      dispatch(setAuth({ isAuth: true, user: data.data, profile, status }));
     }
   }
 );

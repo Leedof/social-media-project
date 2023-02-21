@@ -1,4 +1,4 @@
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Profile from "./Profile";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -24,8 +24,10 @@ const ProfileContainer = () => {
     if (!userId) {
       navigate("/login");
     }
-    dispatch(getProfile(userId));
-    dispatch(getStatus(userId));
+    if (userId) {
+      dispatch(getProfile(userId));
+      dispatch(getStatus(userId));
+    }
   }, [dispatch, userId, navigate]);
 
   if (profile.isFetching) {

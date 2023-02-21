@@ -1,0 +1,30 @@
+.wrapper {
+}
+
+.label {
+  display: inline-block;
+  font-size: 24px;
+  font-weight: 700;
+  color: #747474;
+}
+
+.textarea {
+  width: 100%;
+  padding: 10px 15px;
+  font-weight: 500;
+  font-size: 22px;
+  border: 2px solid #858585;
+  border-radius: 5px;
+  color: #858585;
+  resize: none;
+
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+  &:focus {
+    color: black;
+  }
+}
+.error {
+  color: red;
+}

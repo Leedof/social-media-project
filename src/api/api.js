@@ -26,6 +26,10 @@ export const profileAPI = {
   getProfile(userId) {
     return instance.get("/profile/" + userId).then((response) => response.data);
   },
+  setProfile(user) {
+    return instance.put("/profile", user).then((response) => response.data);
+  },
+
   getStatus(userId) {
     return instance
       .get("/profile/status/" + userId)
