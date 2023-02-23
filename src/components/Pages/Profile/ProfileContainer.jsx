@@ -7,11 +7,18 @@ import Loader from "../../UI/Loader/Loader";
 
 const ProfileContainer = () => {
   const params = useParams();
+  // profile - data for any user other than owner
+  // authProfile - owner's data received during AppInit/Authorization
   const profile = useSelector((state) => state.profile);
+  const { profile: authProfile, status: authStatus } = useSelector(
+    (state) => state.auth
+  );
   const authId = useSelector((state) => state.auth.user.id);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //Chek whose profile must be shown URL ? Auth ? none
+
+  //Check whose profile must be shown URL ? Auth ? none
   let userId;
   if (params.id) {
     userId = params.id;
@@ -20,25 +27,28 @@ const ProfileContainer = () => {
     userId = authId;
   }
 
+  const isOwner = userId === authId;
+
   useEffect(() => {
     if (!userId) {
       navigate("/login");
     }
-    if (userId) {
+    //In case URL data => fetch it
+    if (!isOwner && userId) {
       dispatch(getProfile(userId));
       dispatch(getStatus(userId));
     }
-  }, [dispatch, userId, navigate]);
+  }, [dispatch, userId, navigate, isOwner]);
 
-  if (profile.isFetching) {
+  if (profile.isFetching && !isOwner) {
     return <Loader />;
   }
 
   return (
     <Profile
-      profile={profile.data}
-      status={profile.status}
-      isOwner={userId === authId}
+      profile={isOwner ? authProfile : profile.data}
+      status={isOwner ? authStatus : profile.status}
+      isOwner={isOwner}
     />
   );
 };

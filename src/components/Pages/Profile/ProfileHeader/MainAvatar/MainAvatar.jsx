@@ -1,7 +1,7 @@
 import Avatar from "../../../../UI/Avatar/Avatar";
 import styles from "./MainAvatar.module.scss";
 import { useDispatch } from "react-redux";
-import { setPhoto } from "../../../../../store/slices/profileSlice";
+import { setPhoto } from "../../../../../store/slices/authSlice";
 
 const MainAvatar = ({ photos, isOwner }) => {
   const dispatch = useDispatch();

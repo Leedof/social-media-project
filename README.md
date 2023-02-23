@@ -7,3 +7,4 @@
 4. - npm install @reduxjs/toolkit react-redux
 5. - axios
 6. - classnames
+7. - lodash

@@ -1,14 +1,22 @@
-import { ErrorMessage, Form, Formik } from "formik";
-import Avatar from "../../UI/Avatar/Avatar";
-import PhotoPreview from "./PhotoPreview/PhotoPreview";
-import * as yup from "yup";
-
-import styles from "./Settings.module.scss";
-import { useSelector } from "react-redux";
+//hoc
+import authRequired from "./../../../hoc/authRequired";
+//Components
 import InputFile from "../../UI/FormElements/InputFile";
 import Input from "../../UI/FormElements/Input/Input";
 import Textarea from "../../UI/FormElements/Textarea/Textarea";
 import Checkbox from "../../UI/FormElements/Checkbox/Checkbox";
+import Avatar from "../../UI/Avatar/Avatar";
+import PhotoPreview from "./PhotoPreview/PhotoPreview";
+//Libs
+import { ErrorMessage, Form, Formik } from "formik";
+import * as yup from "yup";
+import _ from "lodash";
+//styles
+import styles from "./Settings.module.scss";
+//hooks + thunksCreators
+import { useSelector, useDispatch } from "react-redux";
+import { editProfile } from "../../../store/slices/authSlice";
+import Loader from "../../UI/Loader/Loader";
 
 const Settings = () => {
   const {
@@ -20,13 +28,14 @@ const Settings = () => {
     photos,
   } = useSelector((state) => state.auth.profile);
   const status = useSelector((state) => state.auth.status);
+  const dispatch = useDispatch();
+
   //helper to change null to undefined from server response for inputs
   const checkValue = (value) => {
     return value === null ? "" : value;
   };
   const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/png"];
   const FILE_SIZE = 2500000;
-
   const profileSchema = yup.object({
     photoFile: yup
       .mixed()
@@ -39,36 +48,81 @@ const Settings = () => {
         if (value === null) return true;
         return value && SUPPORTED_FORMATS.includes(value.type);
       }),
-    status: yup.string().required("blabla"),
+    fullName: yup
+      .string()
+      .matches(/^[A-Za-z ]*$/, "Please enter valid name")
+      .max(40, "Your name is too long")
+      .required("Required field"),
+    status: yup.string().max(300, "Maximum 300 symbols"),
+    contacts: yup.object({
+      github: yup.string().url("Enter valid URL"),
+      vk: yup.string().url("Enter valid URL"),
+      facebook: yup.string().url("Enter valid URL"),
+      instagram: yup.string().url("Enter valid URL"),
+      twitter: yup.string().url("Enter valid URL"),
+      website: yup.string().url("Enter valid URL"),
+      youtube: yup.string().url("Enter valid URL"),
+      mainLink: yup.string().url("Enter valid URL"),
+    }),
   });
+  const initialValues = {
+    aboutMe: "emptyAlways",
+    photoFile: null,
+    status,
+    userId,
+    fullName,
+    lookingForAJob,
+    lookingForAJobDescription: checkValue(lookingForAJobDescription),
+    contacts: {
+      github: checkValue(contacts.github),
+      vk: checkValue(contacts.vk),
+      facebook: checkValue(contacts.facebook),
+      instagram: checkValue(contacts.instagram),
+      twitter: checkValue(contacts.twitter),
+      website: checkValue(contacts.website),
+      youtube: checkValue(contacts.youtube),
+      mainLink: checkValue(contacts.mainLink),
+    },
+  };
+
+  const onSubmit = (values, onSubmitProps) => {
+    const { setStatus, setSubmitting } = onSubmitProps;
+    const { photoFile, status, ...profile } = values;
+    const {
+      photoFile: prevPhotoFile,
+      status: prevStatus,
+      ...prevProfile
+    } = initialValues;
+
+    const payload = {
+      photo: photoFile,
+      status: status === prevStatus ? null : status,
+      profile: _.isEqual(profile, prevProfile) ? null : profile,
+    };
+
+    dispatch(
+      editProfile({ data: payload, helpers: { setStatus, setSubmitting } })
+    );
+    // handler
+    setSubmitting(true);
+  };
+
   return (
     <div className={styles.settingsWrapper}>
       <Formik
-        initialValues={{
-          photoFile: null,
-          status,
-          userId,
-          fullName,
-          lookingForAJob,
-          lookingForAJobDescription: checkValue(lookingForAJobDescription),
-          contacts: {
-            github: checkValue(contacts.github),
-            vk: checkValue(contacts.vk),
-            facebook: checkValue(contacts.facebook),
-            instagram: checkValue(contacts.instagram),
-            twitter: checkValue(contacts.twitter),
-            website: checkValue(contacts.website),
-            youtube: checkValue(contacts.youtube),
-            mainLink: checkValue(contacts.mainLink),
-          },
-        }}
+        initialValues={initialValues}
         validationSchema={profileSchema}
-        onSubmit={(values) => {
-          console.log(values);
-        }}
+        onSubmit={onSubmit}
       >
-        {({ values, setFieldValue, setFieldTouched, ...other }) => (
+        {({ values, setFieldValue, setFieldTouched, isSubmitting }) => (
           <Form className={styles.form}>
+            {isSubmitting ? (
+              <div className={styles.loader}>
+                <Loader />{" "}
+              </div>
+            ) : (
+              ""
+            )}
             <div className={styles.formHeader}>
               <h2 className={styles.title}>Edit profile</h2>
               <div className={styles.avatarInput}>
@@ -76,13 +130,14 @@ const Settings = () => {
                   <InputFile
                     name="photoFile"
                     accept="image/*"
+                    className={styles.inputBtn}
+                    value={undefined}
                     onChange={(e) => {
                       setFieldValue("photoFile", e.target.files[0]);
-                      setFieldTouched("photoFile");
-                      debugger;
-                      console.log(other);
                     }}
-                    className={styles.inputBtn}
+                    onBlur={() => {
+                      setFieldTouched("photoFile");
+                    }}
                   >
                     {values.photoFile ? (
                       <PhotoPreview
@@ -131,9 +186,12 @@ const Settings = () => {
                 <Input label="Main Link" type="text" name="contacts.mainLink" />
               </div>
             </div>
+
             <div className={styles.formActions}>
               <button type="button">Cancel</button>
-              <button type="submit">Save</button>
+              <button type="submit" disabled={isSubmitting}>
+                Save
+              </button>
             </div>
           </Form>
         )}
@@ -142,51 +200,4 @@ const Settings = () => {
   );
 };
 
-export default Settings;
-
-{
-  /* <input
-type="file"
-name="photoFile"
-accept="image/*"
-ref={inputRef}
-onChange={(e) => {
-  setFieldValue("photoFile", e.target.files[0]);
-}}
-/>
-<button
-type="button"
-onClick={() => {
-  inputRef.current.click();
-}}
->
-Load Photo
-</button> */
-}
-{
-  /* <div className={styles.accountInputs}>
-  <h3 className={styles.title}>Account information:</h3>
-  <Input
-    label="Name"
-    type="text"
-    name="fullName"
-    className={styles.textInput}
-  />
-  <TextareaField label="Status" name="status" className={styles.textarea} />
-  <Input
-    label="Looking for a job?"
-    type="checkbox"
-    name="lookingForAJob"
-    className={styles.checkbox}
-  />
-  {values.lookingForAJob ? (
-    <TextareaField
-      label="Skills"
-      name="lookingForAJobDescription"
-      className={styles.textarea}
-    />
-  ) : (
-    ""
-  )}
-</div>; */
-}
+export default authRequired(Settings);

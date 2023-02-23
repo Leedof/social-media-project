@@ -28,6 +28,7 @@ const Login = ({ isAuth, onSumbitHandler }) => {
     const { setStatus, setSubmitting } = onSubmitProps;
 
     onSumbitHandler(email, password, rememberMe, setStatus, setSubmitting);
+    setSubmitting(true);
   };
 
   return (

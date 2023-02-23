@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./Status.module.scss";
 import { useDispatch } from "react-redux";
-import { putStatus } from "./../../../../../store/slices/profileSlice";
+import { putStatus } from "../../../../../store/slices/authSlice";
 
 const Status = (props) => {
   const [status, setStatus] = useState(props.status);

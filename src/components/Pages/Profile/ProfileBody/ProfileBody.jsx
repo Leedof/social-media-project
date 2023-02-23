@@ -53,6 +53,7 @@ const ProfileBody = ({ contacts }) => {
         items.push(
           <a
             href={contacts[item]}
+            key={item}
             target="_blank"
             rel="noreferrer"
             className={styles.item}

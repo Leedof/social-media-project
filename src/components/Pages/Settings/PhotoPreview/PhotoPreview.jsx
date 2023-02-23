@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import { useState, useEffect } from "react";
 import Loader from "../../../UI/Loader/Loader";
 

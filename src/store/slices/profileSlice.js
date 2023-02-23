@@ -16,24 +16,8 @@ export const getProfile = createAsyncThunk(
 );
 export const getStatus = createAsyncThunk(
   "profile/getStatus",
-  async function (userId, { dispatch }) {
+  async function (userId) {
     const data = await profileAPI.getStatus(userId);
-    dispatch(setStatus(data));
-  }
-);
-export const putStatus = createAsyncThunk(
-  "profile/putStatus",
-  async function (status, { dispatch }) {
-    const data = await profileAPI.setStatus(status);
-    if (data.resultCode === 0) {
-      dispatch(setStatus(status));
-    }
-  }
-);
-export const setPhoto = createAsyncThunk(
-  "profile/setPhoto",
-  async function (photoFile) {
-    const data = await profileAPI.setPhoto(photoFile);
     return data;
   }
 );
@@ -41,11 +25,7 @@ export const setPhoto = createAsyncThunk(
 export const profileSlice = createSlice({
   name: "profile",
   initialState,
-  reducers: {
-    setStatus: (state, action) => {
-      state.status = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     //getProfile
     builder.addCase(getProfile.pending, (state) => {
@@ -56,14 +36,11 @@ export const profileSlice = createSlice({
       state.data = payload;
       state.isFetching = false;
     });
-    //Save photo
-    builder.addCase(setPhoto.fulfilled, (state, { payload }) => {
-      if (payload.resultCode === 0) {
-        state.data.photos = payload.data.photos;
-      }
+    //getStatus
+    builder.addCase(getStatus.fulfilled, (state, { payload }) => {
+      state.status = payload;
     });
   },
 });
 
-export const { setStatus } = profileSlice.actions;
 export default profileSlice.reducer;
