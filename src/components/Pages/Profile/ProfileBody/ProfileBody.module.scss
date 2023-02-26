@@ -1,32 +1,55 @@
+@use "../../../../scss/mixins" as *;
+@use "../../../../scss/variables" as *;
+
 .title {
   font-weight: 700;
-  font-size: 30px;
-  margin-bottom: 19px;
+  font-size: rem(30);
+  margin-bottom: em(15);
+  @media (max-width: em(991.98)) {
+    margin-bottom: em(10);
+  }
+  @media (max-width: em(467.98)) {
+    margin-bottom: em(10);
+  }
 }
+
 .items {
   display: flex;
   flex-wrap: wrap;
-  column-gap: 54px;
-  row-gap: 36px;
+  column-gap: rem(54);
+  row-gap: rem(34);
   justify-content: center;
-
   span {
     width: 100%;
     text-align: start;
   }
-}
-.item {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-  align-items: center;
-  justify-content: center;
-  flex: 0 0 180px;
-  // max-width: 180px;
-  background-color: rgba(38, 70, 83, 1);
-  padding: 17px 40px;
-  border-radius: 20px;
-  color: white;
-  font-weight: 700;
-  font-size: 20px;
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    gap: rem(9);
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 auto;
+    // flex: 0 0 180px;
+    // max-width: 180px;
+    background-color: $secondaryColorDark;
+    padding: rem(17) rem(40);
+    border-radius: 20px;
+    color: $mainColorLight;
+    font-weight: 700;
+    font-size: rem(20);
+  }
+
+  @media (min-width: em(1200)) {
+    .item {
+      flex: 0 0 180px;
+    }
+  }
+  @media (max-width: em(991.98)) {
+    column-gap: rem(34);
+    row-gap: rem(20);
+  }
+  @media (max-width: em(467.98)) {
+  }
 }

@@ -1,20 +1,34 @@
+@use "../../../../../scss/mixins" as *;
+@use "../../../../../scss//variables" as *;
+
 .avatarWrapper {
-  width: 300px;
-  height: 300px;
   overflow: hidden;
   position: relative;
-  flex: 0 0 300px;
+  flex: 0 0 32%; /* 300px/922 */
+  height: 32%;
+  max-width: 300px;
 
   &:hover {
     .label {
       bottom: 0%;
     }
   }
+
+  @media (max-width: em(767.98)) {
+    align-self: center;
+    border-radius: 50%;
+    max-width: 45%; /* 300/675 */
+    margin-bottom: rem(15);
+  }
+  @media (max-width: em(467.98)) {
+    max-width: 54%; /* 300/675 */
+    margin-bottom: rem(10);
+  }
 }
 
 .label {
   position: absolute;
-  bottom: -20%;
+  bottom: -40%;
   left: 0;
   background-color: rgba(128, 128, 128, 0.568);
   width: 100%;
@@ -23,9 +37,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: rem(20);
   font-weight: bold;
   height: 20%;
   cursor: pointer;
   transition: bottom 0.5s ease 0s;
+
+  @media (max-width: em(767.98)) {
+    bottom: -40%;
+    height: 40%;
+    font-size: rem(18);
+  }
+  @media (max-width: em(467.98)) {
+    bottom: -40%;
+    height: 40%;
+    font-size: rem(16);
+  }
 }

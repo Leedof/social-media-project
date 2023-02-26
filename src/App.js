@@ -4,7 +4,6 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import "./App.scss";
 import Layout from "./components/Layout";
 //Main = Pages
 import Home from "./components/Pages/Home/Home";
@@ -12,7 +11,6 @@ import LoginContainer from "./components/Pages/Login/LoginContainer";
 import ProfileContainer from "./components/Pages/Profile/ProfileContainer";
 import Users from "./components/Pages/Users/Users";
 import Settings from "./components/Pages/Settings/Settings";
-import Weather from "./components/Pages/Weather/Weather";
 import Loader from "./components/UI/Loader/Loader";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -28,9 +26,7 @@ const router = createBrowserRouter(
       <Route path="profile" element={<ProfileContainer />}>
         <Route path=":id" element={<ProfileContainer />} />
       </Route>
-
       <Route path="users" element={<Users />} />
-      <Route path="weather" element={<Weather />} />
       <Route path="settings" element={<Settings />} />
       <Route path="login" element={<LoginContainer />} />
       <Route path="*" element={<h1>Page not found 404</h1>} />

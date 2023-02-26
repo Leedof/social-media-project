@@ -12,29 +12,23 @@ const Navbar = () => {
     <div className={styles.navbar}>
       <div className={styles.container}>
         <nav className={styles.menu}>
-          <ul className={styles.menu__list}>
-            <li className={styles.menu__item}>
+          <ul>
+            <li className={styles.item}>
               <NavLink to="/profile" className={isActive}>
-                <IconProfile className={styles.menu__icon} />
-                Profile
+                <IconProfile className={styles.icon} />
+                <span className={styles.title}>Profile</span>
               </NavLink>
             </li>
-            <li className={styles.menu__item}>
+            <li className={styles.item}>
               <NavLink to="/users" className={isActive}>
-                <IconUsers className={styles.menu__icon} />
-                Users
+                <IconUsers className={styles.icon} />
+                <span className={styles.title}>Users</span>
               </NavLink>
             </li>
-            <li className={styles.menu__item}>
-              <NavLink to="/weather" className={isActive}>
-                <IconWeather className={styles.menu__icon} />
-                Weather
-              </NavLink>
-            </li>
-            <li className={styles.menu__item}>
+            <li className={styles.item}>
               <NavLink to="/settings" className={isActive}>
-                <IconSettings className={styles.menu__icon} />
-                Settings
+                <IconSettings className={styles.icon} />
+                <span className={styles.title}>Settings</span>
               </NavLink>
             </li>
           </ul>

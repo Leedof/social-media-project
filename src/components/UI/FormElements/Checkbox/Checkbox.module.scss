@@ -1,3 +1,6 @@
+@use "../../../../scss/mixins" as *;
+@use "../../../../scss/variables" as *;
+
 .checkbox {
   input {
     position: absolute;
@@ -28,7 +31,7 @@
   }
 
   span {
-    font-size: 24px;
+    font-size: rem(24);
     font-weight: 700;
     color: #747474;
     display: inline-flex;
@@ -49,6 +52,17 @@
       background-repeat: no-repeat;
       background-position: center center;
       background-size: 50% 50%;
+    }
+  }
+
+  @media (max-width: em(991.98)) {
+    span {
+      font-size: rem(20);
+    }
+  }
+  @media (max-width: em(467.98)) {
+    span {
+      font-size: rem(16);
     }
   }
 }

@@ -43,29 +43,27 @@ const Login = ({ isAuth, onSumbitHandler }) => {
           <Form className={styles.loginForm}>
             <div className={styles.loginForm__inputs}>
               <InputField
+                title="Email address"
                 type="email"
                 name="email"
                 placeholder="example@gmail.com"
               />
               <InputField
+                title="Password"
                 type="password"
                 name="password"
                 placeholder="*******"
               />
             </div>
-            <label htmlFor="rememberMe">
-              <Field
-                type="checkbox"
-                name="rememberMe"
-                className={styles.inputCheckbox}
-              />
+            <label htmlFor="rememberMe" className={styles.checkboxLabel}>
+              <Field type="checkbox" name="rememberMe" />
               Remember me
             </label>
 
             <button type="submit" disabled={isSubmitting}>
               Log in
             </button>
-            <div>{status}</div>
+            <div className={styles.error}>{status}</div>
           </Form>
         )}
       </Formik>

@@ -11,7 +11,7 @@ const MainAvatar = ({ photos, isOwner }) => {
 
   return (
     <div className={styles.avatarWrapper}>
-      <Avatar photos={photos} />
+      <Avatar photos={photos} className={styles.avatar} />
       {isOwner ? (
         <label htmlFor="avatar" className={styles.label}>
           Upload photo

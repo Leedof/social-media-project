@@ -1,3 +1,6 @@
+@use "../../../scss/mixins" as *;
+@use "../../../scss/variables" as *;
+
 .usersWrapper {
   height: 100%;
   display: flex;
@@ -9,6 +12,13 @@
 .list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 30px;
-  row-gap: 15px;
+  column-gap: rem(30);
+  row-gap: rem(15);
+
+  @media (max-width: em(1199.98)) {
+    column-gap: rem(20);
+  }
+  @media (max-width: em(991.98)) {
+    grid-template-columns: 1fr;
+  }
 }

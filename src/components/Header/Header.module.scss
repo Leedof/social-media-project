@@ -8,13 +8,25 @@
 .сontainer {
   background-color: $mainColorDark;
   padding: rem(10) rem(22);
-
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  @media (max-width: em(768)) {
+  @media (max-width: em(767.98)) {
     padding: rem(10) rem(10);
+  }
+}
+.logo {
+  width: 120px;
+  @media (max-width: em(767.98)) {
+    width: 100px;
+  }
+  @media (max-width: em(467.98)) {
+    width: 80px;
+  }
+  img {
+    width: 100%;
   }
 }
 
@@ -23,24 +35,23 @@
   gap: rem(28);
   align-items: center;
 
-  @media (max-width: em(768)) {
+  @media (max-width: em(767.98)) {
     gap: rem(14);
-  }
-
-  &__profile {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    overflow: hidden;
   }
 
   &__auth {
     cursor: pointer;
     color: white;
-    font-size: 25px;
+    font-size: rem(25);
     font-weight: 500;
     :hover {
       text-decoration: underline;
+    }
+    @media (max-width: em(767.98)) {
+      font-size: rem(20);
+    }
+    @media (max-width: em(467.98)) {
+      font-size: rem(16);
     }
   }
 }

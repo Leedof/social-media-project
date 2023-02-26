@@ -8,13 +8,32 @@
   gap: rem(22);
   max-width: rem($containerWidth);
   margin: 0 auto;
-  padding: 0 rem(15);
-  min-height: rem(800);
-  height: 95vh;
-  // margin-bottom: rem(50);
+  padding: 0 rem(15) rem(20) rem(15);
+  min-height: 98vh;
+
+  @media (max-width: em(991.98)) {
+    grid-template-columns: rem(150) auto;
+    grid-template-rows: rem(50) auto;
+    gap: rem(18);
+  }
+  @media (max-width: em(767.98)) {
+    grid-template-columns: rem(50) auto;
+    grid-template-rows: rem(50) auto;
+    gap: rem(12);
+  }
+  @media (max-width: em(467.98)) {
+    padding: 0 rem(10) rem(20) rem(10);
+
+    grid-template-columns: rem(50) calc(100% - rem(60));
+    grid-template-rows: rem(50) auto;
+    gap: rem(12);
+  }
 }
 
 .mainSection {
   background-color: white;
-  padding: 14px 20px;
+  padding: rem(14) rem(20);
+  @media (max-width: em(467.98)) {
+    padding: rem(10);
+  }
 }

@@ -13,7 +13,7 @@ const ProfileHeader = ({
   isOwner,
 }) => {
   return (
-    <div className={styles.header}>
+    <div className={styles.headerWrapper}>
       <MainAvatar photos={photos} isOwner={isOwner} />
       <div className={styles.info}>
         <div className={styles.infoHeader}>
@@ -37,16 +37,16 @@ const ProfileHeader = ({
             ""
           )}
         </div>
+        {isOwner ? (
+          <div className={styles.actions}>
+            <Link to="/settings">
+              <img src={editIcon} alt="edit" />
+            </Link>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
-      {isOwner ? (
-        <div className={styles.actions}>
-          <Link to="/settings">
-            <img src={editIcon} alt="edit" />
-          </Link>
-        </div>
-      ) : (
-        ""
-      )}
     </div>
   );
 };

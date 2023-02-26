@@ -1,68 +1,140 @@
+@use "../../../../scss/mixins" as *;
+@use "../../../../scss/variables" as *;
+
 .card {
   display: flex;
-  gap: 10px;
-}
-.header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  .avatar {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-bottom: 14px;
-  }
-  .btn {
-    width: 100px;
-    background-color: #264653;
-    border-radius: 20px;
-    font-weight: 500;
-    font-size: 18px;
-    color: #ffffff;
-    letter-spacing: 1px;
-    padding: 5px 0;
+  gap: rem(10);
 
-    &:hover {
-      box-shadow: 0 0 20px 2px #264653;
-    }
-    &:disabled {
-      background-color: grey;
-    }
+  .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    &.followed {
-      color: rgba(38, 70, 83, 1);
-      background-color: rgba(166, 172, 65, 1);
+    .avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: rem(14);
+    }
+    .btn {
+      width: 100px;
+      background-color: #264653;
+      border-radius: 20px;
+      font-weight: 500;
+      font-size: rem(18);
+      color: $mainColorLight;
+      letter-spacing: em(1);
+      padding: rem(5) 0;
+
       &:hover {
-        box-shadow: 0 0 20px 2px rgba(166, 172, 65, 1);
+        box-shadow: 0 0 20px 2px #264653;
       }
       &:disabled {
         background-color: grey;
       }
+
+      &.followed {
+        color: rgba(38, 70, 83, 1);
+        background-color: rgba(166, 172, 65, 1);
+        &:hover {
+          box-shadow: 0 0 20px 2px rgba(166, 172, 65, 1);
+        }
+        &:disabled {
+          background-color: grey;
+        }
+      }
     }
   }
-}
 
-.body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
+  .body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: rem(20);
 
-  background-color: rgba(38, 70, 83, 1);
-  border-radius: 50px;
-  color: #ffffff;
-  width: 100%;
-  overflow: hidden;
-  padding: 20px 35px;
+    background-color: $secondaryColorDark;
+    border-radius: 50px;
+    color: $mainColorLight;
+    width: 100%;
+    overflow: hidden;
+    padding: rem(20) rem(35);
 
-  .title {
-    word-break: break-word;
-    font-weight: 700;
-    font-size: 30px;
+    .title {
+      word-break: break-word;
+      font-weight: 700;
+      font-size: rem(30);
+    }
+    .status {
+      font-weight: 400;
+      font-size: rem(18);
+    }
   }
-  .status {
-    font-weight: 400;
-    font-size: 18px;
+
+  @media (max-width: em(1199.98)) {
+    .header {
+      .avatar {
+        width: 85px;
+        height: 85px;
+      }
+    }
+    .body {
+      padding: rem(15) rem(25);
+    }
+  }
+  @media (max-width: em(991.98)) {
+    .header {
+      .avatar {
+        width: 80px;
+        height: 80px;
+        margin-bottom: rem(12);
+      }
+      .btn {
+        width: 90px;
+        font-size: rem(16);
+        padding: rem(5) 0;
+      }
+    }
+
+    .body {
+      gap: rem(20);
+      padding: rem(15) rem(25);
+      .title {
+        font-size: rem(25);
+      }
+      .status {
+        font-size: rem(16);
+      }
+    }
+  }
+  @media (max-width: em(467.98)) {
+    gap: rem(5);
+
+    .header {
+      .avatar {
+        width: 50px;
+        height: 50px;
+        margin-bottom: rem(8);
+      }
+      .btn {
+        width: 70px;
+        font-size: rem(12);
+        padding: rem(3) 0;
+      }
+    }
+
+    .body {
+      border-radius: 30px;
+
+      gap: rem(20);
+      padding: rem(10) rem(12);
+      .title {
+        font-size: rem(20);
+      }
+      .status {
+        font-size: rem(12);
+      }
+    }
   }
 }

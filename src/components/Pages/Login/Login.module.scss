@@ -1,52 +1,118 @@
+@use "../../../scss/mixins" as *;
+@use "../../../scss/variables" as *;
+
 .loginPage {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
-  gap: 55px;
-}
+  gap: rem(55);
 
-.title {
-  font-weight: 700;
-  font-size: 50px;
-  line-height: 1.22; /* 61px/50 */
-}
+  .title {
+    font-weight: 700;
+    font-size: rem(50);
+    line-height: 1.22; /* 61px/50 */
+    // width: 66%; /* 640px/960 */
+  }
 
-.loginForm {
-  display: flex;
-  flex-direction: column;
-  min-width: 640px;
-  gap: 34px;
-  &__inputs {
+  .loginForm {
     display: flex;
     flex-direction: column;
-    gap: 35px;
+    width: 66%; /* 640px/960 */
+    gap: rem(34);
+
+    &__inputs {
+      display: flex;
+      flex-direction: column;
+      gap: rem(34);
+    }
+    input:not(input[type="checkbox"]) {
+      width: 100%;
+    }
+
+    input[type="password"]::placeholder {
+      transform: translateY(5px);
+    }
+
+    input[type="checkbox"] {
+      align-self: flex-start;
+      margin-right: rem(10);
+    }
+
+    button[type="submit"] {
+      padding: rem(16) 0;
+      display: block;
+      color: $mainColorLight;
+      font-weight: 700;
+      font-size: rem(26);
+      line-height: 1.19; /* 31px/26 */
+      background: $mainColorDark;
+      border: 1px solid $mainColorDark;
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+
+      &:disabled {
+        background: #17171752;
+      }
+    }
+    .error {
+      color: red;
+    }
   }
 
-  input[type="password"]::placeholder {
-    transform: translateY(5px);
+  @media (max-width: em(991.98)) {
+    gap: rem(35);
+
+    .title {
+      font-size: rem(40);
+    }
+    .loginForm {
+      width: 75%; /* 640px/960 */
+      gap: rem(25);
+    }
   }
-
-  input[type="checkbox"] {
-    align-self: flex-start;
-    margin-right: 10px;
+  @media (max-width: em(768.98)) {
+    gap: rem(30);
+    justify-content: flex-start;
+    .title {
+      font-size: rem(35);
+    }
+    .loginForm {
+      width: 90%; /* 640px/960 */
+      gap: rem(20);
+      &__inputs {
+        gap: rem(24);
+      }
+      .checkboxLabel {
+        font-size: rem(16);
+      }
+      button[type="submit"] {
+        padding: rem(12) 0;
+        font-size: rem(22);
+      }
+    }
   }
+  @media (max-width: em(467.98)) {
+    gap: rem(25);
 
-  button[type="submit"] {
-    padding: 16px 0;
-    display: block;
-    color: white;
-    font-weight: 700;
-    font-size: 26px;
-    line-height: 1.19; /* 31px/26 */
-    background: #171717;
-    border: 1px solid rgba(23, 23, 23, 0.35);
-    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-
-    &:disabled {
-      background: #17171752;
+    .title {
+      font-size: rem(35);
+      align-self: flex-start;
+    }
+    .loginForm {
+      width: 98%; /* 640px/960 */
+      gap: rem(15);
+      &__inputs {
+        gap: rem(15);
+      }
+      .checkboxLabel {
+        font-size: rem(14);
+      }
+      button[type="submit"] {
+        padding: rem(12) 0;
+        font-size: rem(20);
+      }
     }
   }
 }

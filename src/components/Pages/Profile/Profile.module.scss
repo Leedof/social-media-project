@@ -1,5 +1,7 @@
+@use "../../../scss/mixins" as *;
+
 .profilePage {
   display: flex;
   flex-direction: column;
-  gap: 26px;
+  gap: rem(26);
 }
