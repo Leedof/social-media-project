@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/social-media-project/static/css/main.5ba360e6.css",
+    "main.js": "/social-media-project/static/js/main.b08fe040.js",
+    "static/media/settings.svg": "/social-media-project/static/media/settings.6032163de20fae9c5eccbe1c80cdcfd8.svg",
+    "static/media/logo.svg": "/social-media-project/static/media/logo.fb96c48c5215296c2748a4b9da0b68af.svg",
+    "static/media/users.svg": "/social-media-project/static/media/users.74eea94d287f11080f708e4e86044469.svg",
+    "static/media/instagram.svg": "/social-media-project/static/media/instagram.2ebb949e5efd550133b0f5001647cf33.svg",
+    "static/media/weather.svg": "/social-media-project/static/media/weather.f85da0031404309c2b0afabb2b11072a.svg",
+    "static/media/github.svg": "/social-media-project/static/media/github.14639bc362920ad27f05a7e9b6ac0978.svg",
+    "static/media/profile.svg": "/social-media-project/static/media/profile.31fc52907e62ded033a087fe50189ac1.svg",
+    "static/media/edit.svg": "/social-media-project/static/media/edit.afc61044d7fcdae5d74d78cd3122ce3c.svg",
+    "static/media/twitter.svg": "/social-media-project/static/media/twitter.e88a333f06d6ca429df7264f03ac556a.svg",
+    "static/media/youtube.svg": "/social-media-project/static/media/youtube.b1dc3dd16f252dc6f68a07ecbc8c6c8f.svg",
+    "static/media/vk.svg": "/social-media-project/static/media/vk.c2f8c43ccfac11dc53f5b03519211618.svg",
+    "static/media/website.svg": "/social-media-project/static/media/website.6b0de29934fe057c568c897fc5498edf.svg",
+    "static/media/mainlink.svg": "/social-media-project/static/media/mainlink.d94adce8f12773e5510f0ddfb1ffb42f.svg",
+    "static/media/arrowRight.svg": "/social-media-project/static/media/arrowRight.ff0987b879c46be005f65306c16c4564.svg",
+    "static/media/facebook.svg": "/social-media-project/static/media/facebook.558e668f15ad56264867b5fdd70bee4d.svg",
+    "index.html": "/social-media-project/index.html",
+    "main.5ba360e6.css.map": "/social-media-project/static/css/main.5ba360e6.css.map",
+    "main.b08fe040.js.map": "/social-media-project/static/js/main.b08fe040.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5ba360e6.css",
+    "static/js/main.b08fe040.js"
+  ]
+}
