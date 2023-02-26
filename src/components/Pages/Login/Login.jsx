@@ -1,9 +1,11 @@
 import React from "react";
-import { Field, Form, Formik } from "formik";
-import InputField from "./InputField/InputField";
-import * as yup from "yup";
 import styles from "./Login.module.scss";
+import InputField from "./InputField/InputField";
+import { Field, Form, Formik } from "formik";
+import * as yup from "yup";
 import { Navigate, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signIn } from "../../../store/slices/authSlice";
 
 //Validation scheme for LOGIN form
 const loginSchema = yup.object({
@@ -14,12 +16,14 @@ const loginSchema = yup.object({
     .required("Required field"),
 });
 
-const Login = ({ isAuth, onSumbitHandler }) => {
+const Login = () => {
+  const dispatch = useDispatch();
+  const isAuth = useSelector((state) => state.auth.isAuth);
+
   const location = useLocation();
   if (isAuth) {
     //Check previous page path, if client was redirected
     const fromPage = location.state?.from?.pathname || "/";
-
     return <Navigate to={fromPage} replace={true} />;
   }
 
@@ -27,7 +31,7 @@ const Login = ({ isAuth, onSumbitHandler }) => {
     const { email, password, rememberMe } = values;
     const { setStatus, setSubmitting } = onSubmitProps;
 
-    onSumbitHandler(email, password, rememberMe, setStatus, setSubmitting);
+    dispatch(signIn({ email, password, rememberMe, setStatus, setSubmitting }));
     setSubmitting(true);
   };
 

@@ -7,8 +7,8 @@ import {
 import Layout from "./components/Layout";
 //Main = Pages
 import Home from "./components/Pages/Home/Home";
-import LoginContainer from "./components/Pages/Login/LoginContainer";
-import ProfileContainer from "./components/Pages/Profile/ProfileContainer";
+import Login from "./components/Pages/Login/Login";
+import Profile from "./components/Pages/Profile/Profile";
 import Users from "./components/Pages/Users/Users";
 import Settings from "./components/Pages/Settings/Settings";
 import Loader from "./components/UI/Loader/Loader";
@@ -23,12 +23,12 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<Home />} />
-      <Route path="profile" element={<ProfileContainer />}>
-        <Route path=":id" element={<ProfileContainer />} />
+      <Route path="profile" element={<Profile />}>
+        <Route path=":id" element={<Profile />} />
       </Route>
       <Route path="users" element={<Users />} />
       <Route path="settings" element={<Settings />} />
-      <Route path="login" element={<LoginContainer />} />
+      <Route path="login" element={<Login />} />
       <Route path="*" element={<h1>Page not found 404</h1>} />
     </Route>
   )
