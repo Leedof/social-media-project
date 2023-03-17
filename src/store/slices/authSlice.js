@@ -58,7 +58,6 @@ export const editProfile = createAsyncThunk(
     helpers.setSubmitting(false);
   }
 );
-
 export const setProfile = createAsyncThunk(
   "auth/setProfile",
   async function (profile) {

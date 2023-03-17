@@ -71,6 +71,11 @@ const Login = () => {
           </Form>
         )}
       </Formik>
+      <p className={styles.text}>
+        Login: leedof4@gmail.com
+        <br />
+        Pass: test123123
+      </p>
     </div>
   );
 };
