@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./Navbar.module.scss";
 import { ReactComponent as IconProfile } from "../../assets/Icons/navbar/profile.svg";
 import { ReactComponent as IconUsers } from "../../assets/Icons/navbar/users.svg";
-import { ReactComponent as IconWeather } from "../../assets/Icons/navbar/weather.svg";
 import { ReactComponent as IconSettings } from "../../assets/Icons/navbar/settings.svg";
 import { NavLink } from "react-router-dom";
 
