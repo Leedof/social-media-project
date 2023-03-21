@@ -1,10 +1,12 @@
-1. - react-router-dom
-     Routing is made with react-router-dom v6.4+
-     createBrowserRouter(createRoutesFromElements(JSX Routes));
-     RouterProvider
-2. - formik
-3. - yup
-4. - npm install @reduxjs/toolkit react-redux
-5. - axios
-6. - classnames
-7. - lodash
+SPA with React/Redux
+
+* Application state with Redux Toolkit
+* Communication with the backend with Axios
+* Client-side routing by React-router DOM. 
+* Form state Formik
+* CSS modules
+
+
+
+
+
